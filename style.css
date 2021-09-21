@@ -1,0 +1,350 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Teko", sans-serif;
+  color: rgb(51, 51, 51);
+}
+button {
+  font-family: "Teko", sans-serif;
+  cursor: pointer;
+}
+path,
+i,
+svg {
+  pointer-events: none;
+}
+.colors {
+  min-height: 80vh;
+  display: flex;
+  color: rgb(212, 212, 212);
+}
+.color {
+  height: 80vh;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  overflow: hidden;
+}
+.color h2 {
+  font: size 2rem;
+  font-weight: 200;
+  cursor: pointer;
+}
+.sliders {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  /* background: rgba(0, 0, 0, 0.7); */
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(0, 0, 0, 0.5)
+  );
+  backdrop-filter: blur(3px);
+  color: rgb(31, 33, 63);
+  padding: 1rem;
+  width: 80%;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+
+  pointer-events: none;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.sliders.active {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: all;
+}
+.sliders button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border: none;
+  background: rgba(73, 73, 73, 0.5);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 20vh;
+}
+.panel button {
+  font-size: 1.2rem;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  background: rgb(31, 33, 63);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+}
+.panel p {
+  font-size: 1.2rem;
+}
+
+.library-panel,
+.generate-panel,
+.save-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.adjust,
+.lock {
+  font-size: 2rem;
+  border: none;
+  background: none;
+  margin: 2rem 0;
+}
+
+/* Slider Stuff */
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 1rem 0;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-range-thumb,
+input[type="range"]::-moz-range-thumb {
+  background-color: white;
+}
+
+.copy-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+.copy-popup {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 2rem;
+  transition: transform 0.5s ease;
+  transform: translateY(-2rem);
+  min-width: 30%;
+  min-height: 30vh;
+}
+.copy-popup h4 {
+  font-size: 2rem;
+  padding: 2rem;
+}
+.copy-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.copy-popup.active {
+  transform: translateY(0);
+}
+
+.save-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+.save-popup {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 2rem;
+  transition: transform 0.5s ease;
+  transform: translateY(-2rem);
+  min-width: 30%;
+  min-height: 30vh;
+}
+.save-popup h4 {
+  font-size: 2rem;
+  padding: 2rem;
+  font-weight: 200;
+}
+.save-popup .close-save {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  border-top-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  border: none;
+  background: rgba(73, 73, 73, 0.5);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.save-popup input {
+  padding: 1rem;
+  font-size: 2rem;
+  margin: 1rem 3rem;
+}
+.save-popup .submit-save {
+  font-size: 1.5rem;
+  font-weight: 100;
+  padding: 0.5rem 2rem;
+  margin: 2rem;
+  background: rgb(31, 33, 63);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+}
+.save-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.save-popup.active {
+  transform: translateY(0);
+}
+
+.library-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+.library-popup {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 2rem;
+  transition: transform 0.5s ease;
+  transform: translateY(-2rem);
+  min-width: 30%;
+  min-height: 30vh;
+}
+.library-popup h4 {
+  font-size: 2rem;
+  padding: 2rem;
+  font-weight: 200;
+}
+.library-popup .close-library {
+  position: fixed !important;
+  top: 0;
+  right: -10px;
+  padding: 1rem;
+  border-top-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  border: none;
+  background: rgba(73, 73, 73, 0.5);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.library-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.library-popup.active {
+  transform: translateY(0);
+}
+
+.library-popup {
+  min-width: 40%;
+  padding: 1rem;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 50vh;
+}
+.library-popup::-webkit-scrollbar {
+  width: 10px;
+}
+.library-popup::-webkit-scrollbar-track {
+  background: rgb(73, 73, 73);
+}
+.library-popup::-webkit-scrollbar-thumb {
+  background: rgb(199, 199, 199);
+}
+.library-popup::-webkit-scrollbar-thumb:hover {
+  background: rgb(180, 180, 180);
+}
+.custom-palette {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 2rem;
+}
+.small-preview {
+  display: flex;
+  flex: 1;
+}
+.custom-palette h4 {
+  flex: 1;
+}
+.small-preview div {
+  height: 5rem;
+  flex: 1;
+}
+.pick-palette-btn {
+  height: 5rem;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: rgb(31, 33, 63);
+  color: white;
+}
+
+.clear {
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  background: rgb(31, 33, 63);
+  border: none;
+  border-radius: 0.5rem;
+}
